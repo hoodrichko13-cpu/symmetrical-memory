@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jumia Careers — Build What's Next</title>
+<style>
+  /* ============ BASE ============ */
+  *, *::before, *::after { box-sizing: border-box; }
+
+  :root {
+    --orange: #f68b1e;
+    --orange-600: #e07b0a;
+    --orange-50: #fff4e6;
+    --ink: #1f1f24;
+    --ink-soft: #3d3d46;
+    --muted: #6b6b76;
+    --line: #e6e6ea;
+    --bg: #f6f6f8;
+    --green: #127c4a;
+    --green-50: #e8f6ef;
+    --radius: 14px;
+    --shadow-sm: 0 1px 2px rgba(16,16,24,.06), 0 1px 3px rgba(16,16,24,.05);
+    --shadow-md: 0 10px 30px rgba(16,16,24,.08);
+    --shadow-lg: 0 24px 60px rgba(16,16,24,.20);
+  }
+
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 { margin: 0; line-height: 1.2; letter-spacing: -.02em; }
+  p { margin: 0; }
+  button { font: inherit; }
+  a { color: inherit; }
+
+  .container { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
+
+  /* ============ DEMO BANNER ============ */
+  .demo-banner {
+    background: #1f1f24;
+    color: #ffd9a8;
+    font-size: 12.5px;
+    text-align: center;
+    padding: 8px 16px;
+    letter-spacing: .2px;
+  }
+  .demo-banner strong { color: #fff; }
+
+  /* ============ HEADER ============ */
+  .site-header {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(255,255,255,.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner {
+    max-width: 1140px; margin: 0 auto; padding: 0 20px;
+    height: 66px; display: flex; align-items: center; gap: 18px;
+  }
+
+  .logo {
+    display: flex; align-items: baseline; gap: 7px;
+    font-weight: 800; font-size: 21px; letter-spacing: -.5px;
+    text-decoration: none; color: var(--ink); white-space: nowrap;
+  }
+  .logo .mark { color: var(--orange); }
+  .logo .badge {
+    font-size: 10.5px; font-weight: 700; letter-spacing: .8px;
+    text-transform: uppercase; color: var(--orange-600);
+    background: var(--orange-50); border: 1px solid #ffdcb0;
+    padding: 3px 7px; border-radius: 6px; transform: translateY(-3px);
+  }
+
+  .nav { display: none; gap: 26px; margin-left: 14px; }
+  .nav a {
+    text-decoration: none; font-size: 14.5px; font-weight: 500;
+    color: var(--ink-soft); transition: color .15s;
+  }
+  .nav a:hover { color: var(--orange-600); }
+
+  .header-actions { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+
+  .btn {
+    border: 0; cursor: pointer; border-radius: 10px;
+    font-weight: 600; font-size: 14.5px; padding: 11px 18px;
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    transition: transform .12s, background .15s, box-shadow .15s, border-color .15s;
+    text-decoration: none; white-space: nowrap;
+  }
+  .btn:active { transform: scale(.98); }
+  .btn-primary { background: var(--orange); color: #fff; box-shadow: 0 2px 10px rgba(246,139,30,.35); }
+  .btn-primary:hover { background: var(--orange-600); box-shadow: 0 4px 16px rgba(246,139,30,.4); }
+  .btn-ghost { background: #fff; color: var(--ink); border: 1.5px solid var(--line); }
+  .btn-ghost:hover { border-color: #cfcfd6; background: #fafafa; }
+  .btn-block { width: 100%; padding: 14px 18px; font-size: 15px; }
+  .btn[disabled] { opacity: .55; cursor: not-allowed; transform: none; }
+
+  .menu-toggle {
+    display: inline-flex; flex-direction: column; justify-content: center; gap: 5px;
+    width: 42px; height: 42px; padding: 0 10px;
+    background: #fff; border: 1.5px solid var(--line); border-radius: 10px; cursor: pointer;
+  }
+  .menu-toggle span { display: block; height: 2px; background: var(--ink); border-radius: 2px; }
+
+  .mobile-nav {
+    display: none; flex-direction: column; gap: 4px;
+    padding: 10px 20px 18px; border-top: 1px solid var(--line); background: #fff;
+  }
+  .mobile-nav.is-open { display: flex; }
+  .mobile-nav a {
+    padding: 11px 6px; text-decoration: none; font-weight: 500;
+    color: var(--ink-soft); border-radius: 8px;
+  }
+  .mobile-nav a:hover { background: var(--bg); }
+
+  /* ============ HERO ============ */
+  .hero {
+    padding: 58px 0 44px;
+    background:
+      radial-gradient(900px 340px at 50% -20%, #ffeed8, transparent 72%),
+      linear-gradient(180deg, #fff 0%, var(--bg) 100%);
+    border-bottom: 1px solid var(--line);
+  }
+  .hero-inner { max-width: 760px; margin: 0 auto; padding: 0 20px; text-align: center; }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12.5px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--orange-600);
+    background: #fff; border: 1px solid #ffdcb0;
+    padding: 6px 14px; border-radius: 100px; margin-bottom: 20px;
+  }
+  .pulse {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--orange);
+    box-shadow: 0 0 0 0 rgba(246,139,30,.6); animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    70% { box-shadow: 0 0 0 8px rgba(246,139,30,0); }
+    100% { box-shadow: 0 0 0 0 rgba(246,139,30,0); }
+  }
+
+  .hero h1 { font-size: clamp(30px, 5.2vw, 48px); font-weight: 800; }
+  .hero h1 em { font-style: normal; color: var(--orange); }
+  .hero p.sub {
+    margin: 16px auto 0; max-width: 560px;
+    font-size: clamp(15px, 2vw, 17px); color: var(--muted);
+  }
+
+  .search-wrap {
+    margin: 28px auto 0; max-width: 620px;
+    display: flex; gap: 8px; background: #fff; padding: 8px;
+    border-radius: 16px; border: 1.5px solid var(--line);
+    box-shadow: var(--shadow-md);
+  }
+  .search-wrap:focus-within { border-color: #f7c48c; box-shadow: 0 0 0 4px rgba(246,139,30,.12), var(--shadow-md); }
+  .search-wrap .icon { display: grid; place-items: center; padding: 0 6px 0 10px; color: var(--muted); font-size: 16px; }
+  .search-wrap input {
+    flex: 1; min-width: 0; border: 0; outline: none; background: transparent;
+    font: inherit; font-size: 15px; color: var(--ink); padding: 10px 0;
+  }
+  .search-wrap .btn { padding: 12px 22px; }
+
+  .hero-stats {
+    margin: 34px auto 0; display: flex; flex-wrap: wrap;
+    justify-content: center; gap: 12px 34px;
+  }
+  .stat { text-align: center; }
+  .stat strong { display: block; font-size: 21px; font-weight: 800; letter-spacing: -.03em; }
+  .stat span { font-size: 12.5px; color: var(--muted); text-transform: uppercase; letter-spacing: .6px; }
+
+  /* ============ FILTERS ============ */
+  .listing { padding: 34px 0 70px; }
+  .listing-head {
+    display: flex; flex-wrap: wrap; align-items: baseline;
+    gap: 10px 16px; margin-bottom: 18px;
+  }
+  .listing-head h2 { font-size: 22px; font-weight: 800; }
+
+  .filters { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 22px; }
+
+  .select-wrap { position: relative; }
+  .select-wrap::after {
+    content: "▾"; position: absolute; right: 13px; top: 50%;
+    transform: translateY(-50%); pointer-events: none;
+    font-size: 11px; color: var(--muted);
+  }
+  .filters select {
+    appearance: none; -webkit-appearance: none;
+    padding: 10px 34px 10px 14px; border: 1.5px solid var(--line);
+    border-radius: 10px; background: #fff; font: inherit;
+    font-size: 14px; color: var(--ink); cursor: pointer; outline: none;
+    transition: border-color .15s, box-shadow .15s;
+  }
+  .filters select:hover { border-color: #cfcfd6; }
+  .filters select:focus { border-color: var(--orange); box-shadow: 0 0 0 3px rgba(246,139,30,.14); }
+
+  .results-count { margin-left: auto; font-size: 13.5px; color: var(--muted); }
+  .results-count b { color: var(--ink); }
+
+  /* ============ JOB GRID ============ */
+  .job-grid {
+    display: grid; gap: 18px;
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  }
+
+  .job-card {
+    background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 20px; display: flex; flex-direction: column; gap: 14px;
+    box-shadow: var(--shadow-sm);
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    animation: rise .35s ease both;
+  }
+  @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+  .job-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: #f5d3ac; }
+
+  .job-top { display: flex; gap: 12px; align-items: flex-start; }
+  .job-logo {
+    flex: 0 0 44px; height: 44px; border-radius: 11px;
+    display: grid; place-items: center; font-weight: 800; font-size: 15px;
+    background: var(--orange-50); color: var(--orange-600); letter-spacing: -.5px;
+  }
+  .job-title { font-size: 16.5px; font-weight: 700; }
+  .job-sub { font-size: 13px; color: var(--muted); margin-top: 3px; }
+
+  .job-meta { list-style: none; padding: 0; margin: 0; display: grid; gap: 7px; }
+  .job-meta li { display: flex; gap: 8px; font-size: 13.5px; color: var(--ink-soft); }
+  .job-meta li .ic { opacity: .55; width: 15px; text-align: center; }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-size: 11.5px; font-weight: 600; color: var(--ink-soft);
+    background: var(--bg); border: 1px solid var(--line);
+    padding: 4px 9px; border-radius: 100px;
+  }
+
+  .job-footer {
+    margin-top: auto; padding-top: 15px; border-top: 1px dashed var(--line);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .fee { display: flex; flex-direction: column; line-height: 1.25; }
+  .fee span { font-size: 11px; text-transform: uppercase; letter-spacing: .6px; color: var(--muted); font-weight: 600; }
+  .fee strong { font-size: 15.5px; font-weight: 800; color: var(--ink); }
+  .job-footer .btn { margin-left: auto; padding: 10px 16px; font-size: 14px; }
+
+  .empty {
+    grid-column: 1 / -1; text-align: center; padding: 60px 20px;
+    background: #fff; border: 1px dashed var(--line); border-radius: var(--radius);
+  }
+  .empty .big { font-size: 34px; margin-bottom: 10px; }
+  .empty h3 { font-size: 17px; margin-bottom: 6px; }
+  .empty p { color: var(--muted); font-size: 14px; }
+
+  /* ============ MODAL ============ */
+  .modal { position: fixed; inset: 0; z-index: 100; display: none; }
+  .modal.is-open { display: grid; place-items: center; padding: 16px; }
+
+  .modal-backdrop {
+    position: absolute; inset: 0;
+    background: rgba(20,20,28,.55);
+    backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);
+    animation: fade .2s ease;
+  }
+  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+  .modal-card {
+    position: relative; width: min(560px, 100%);
+    max-height: calc(100vh - 32px); overflow-y: auto;
+    background: #fff; border-radius: 20px; box-shadow: var(--shadow-lg);
+    animation: pop .26s cubic-bezier(.2,.9,.3,1.2);
+  }
+  @keyframes pop { from { opacity: 0; transform: translateY(14px) scale(.97); } to { opacity: 1; transform: none; } }
+
+  .modal-close {
+    position: absolute; top: 14px; right: 14px; z-index: 2;
+    width: 34px; height: 34px; border-radius: 50%; border: 0;
+    background: rgba(0,0,0,.05); color: var(--ink-soft);
+    font-size: 15px; cursor: pointer; display: grid; place-items: center;
+    transition: background .15s;
+  }
+  .modal-close:hover { background: rgba(0,0,0,.1); }
+
+  .step { padding: 26px 26px 28px; animation: slideIn .28s ease; }
+  @keyframes slideIn { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: none; } }
+
+  .step-eyebrow {
+    font-size: 11.5px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--orange-600); margin-bottom: 8px;
+  }
+  .step h2 { font-size: 21px; font-weight: 800; padding-right: 34px; }
+  .step-sub { font-size: 13.5px; color: var(--muted); margin-top: 6px; }
+
+  .summary {
+    margin: 20px 0 16px; background: var(--bg); border: 1px solid var(--line);
+    border-radius: 12px; padding: 15px 16px;
+  }
+  .summary-row {
+    display: flex; justify-content: space-between; gap: 12px;
+    font-size: 14px; color: var(--ink-soft); padding: 6px 0;
+  }
+  .summary-row.total {
+    border-top: 1px solid var(--line); margin-top: 8px; padding-top: 12px;
+    font-size: 16px; font-weight: 800; color: var(--ink);
+  }
+  .summary-row.total span:last-child { color: var(--orange-600); }
+
+  .notice {
+    display: flex; gap: 10px; align-items: flex-start;
+    background: var(--orange-50); border: 1px solid #ffdcb0;
+    border-radius: 11px; padding: 12px 14px;
+    font-size: 13px; color: #7a4b0d; margin-bottom: 20px;
+  }
+  .notice .ic { font-size: 15px; line-height: 1.3; }
+
+  .micro {
+    margin-top: 14px; text-align: center;
+    font-size: 11.5px; color: var(--muted);
+  }
+
+  /* payment methods */
+  .pay-list { display: grid; gap: 10px; margin: 16px 0 18px; }
+  .pay-method {
+    display: flex; align-items: center; gap: 12px;
+    border: 1.6px solid var(--line); border-radius: 12px;
+    padding: 13px 15px; cursor: pointer; transition: all .15s; background: #fff;
+  }
+  .pay-method:hover { border-color: #d8d8e0; }
+  .pay-method.selected { border-color: var(--orange); background: var(--orange-50); }
+  .pay-method input { accent-color: var(--orange); width: 17px; height: 17px; cursor: pointer; }
+  .pay-method .pm-body { display: flex; flex-direction: column; }
+  .pay-method .pm-name { font-size: 14.5px; font-weight: 600; }
+  .pay-method .pm-desc { font-size: 12.5px; color: var(--muted); }
+  .pay-method .pm-icon { margin-left: auto; font-size: 17px; opacity: .7; }
+
+  .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+  .field label { font-size: 12.5px; font-weight: 700; color: var(--ink-soft); letter-spacing: .2px; }
+  .field input, .field textarea {
+    width: 100%; padding: 11px 13px; border: 1.6px solid var(--line);
+    border-radius: 10px; font: inherit; font-size: 14.5px; color: var(--ink);
+    background: #fff; outline: none; transition: border-color .15s, box-shadow .15s;
+  }
+  .field input::placeholder, .field textarea::placeholder { color: #a5a5b0; }
+  .field input:focus, .field textarea:focus {
+    border-color: var(--orange); box-shadow: 0 0 0 3px rgba(246,139,30,.14);
+  }
+  .field textarea { resize: vertical; min-height: 84px; }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  .field-error { font-size: 12px; color: #c92a2a; display: none; }
+  .field.invalid input { border-color: #e03131; }
+  .field.invalid .field-error { display: block; }
+
+  /* processing + success */
+  .center-step { text-align: center; padding: 48px 26px; }
+  .spinner {
+    width: 46px; height: 46px; margin: 0 auto 22px;
+    border: 3.5px solid var(--line); border-top-color: var(--orange);
+    border-radius: 50%; animation: spin .8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .check-circle {
+    width: 66px; height: 66px; margin: 0 auto 20px; border-radius: 50%;
+    background: var(--green-50); color: var(--green);
+    display: grid; place-items: center; font-size: 30px; font-weight: 700;
+    animation: pop .4s cubic-bezier(.2,.9,.3,1.4);
+  }
+
+  .ref-box {
+    margin: 18px 0 22px; background: var(--bg); border: 1px dashed #cfcfd6;
+    border-radius: 12px; padding: 14px;
+  }
+  .ref-box span { display: block; font-size: 11.5px; text-transform: uppercase; letter-spacing: .8px; color: var(--muted); font-weight: 700; }
+  .ref-box strong { display: block; font-size: 18px; letter-spacing: 1.5px; margin-top: 4px; }
+
+  .btn-row { display: flex; gap: 10px; }
+  .btn-row .btn { flex: 1; }
+
+  /* ============ FOOTER ============ */
+  .site-footer {
+    background: #1f1f24; color: #b9b9c4;
+    padding: 44px 0 26px; font-size: 13.5px;
+  }
+  .footer-grid {
+    display: grid; gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    margin-bottom: 30px;
+  }
+  .site-footer h4 { color: #fff; font-size: 13.5px; margin-bottom: 12px; letter-spacing: .3px; }
+  .site-footer a { display: block; color: #b9b9c4; text-decoration: none; padding: 4px 0; transition: color .15s; }
+  .site-footer a:hover { color: var(--orange); }
+  .footer-logo { font-size: 20px; font-weight: 800; color: #fff; letter-spacing: -.5px; margin-bottom: 10px; }
+  .footer-logo span { color: var(--orange); }
+  .footer-bottom {
+    border-top: 1px solid #33333c; padding-top: 18px;
+    display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between;
+    font-size: 12.5px; color: #85858f;
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (min-width: 860px) {
+    .nav { display: flex; }
+    .menu-toggle { display: none; }
+    .mobile-nav { display: none !important; }
+  }
+  @media (max-width: 620px) {
+    .hero { padding: 40px 0 34px; }
+    .search-wrap { flex-wrap: wrap; }
+    .search-wrap .icon { display: none; }
+    .search-wrap input { padding: 11px 12px; flex: 1 1 100%; }
+    .search-wrap .btn { flex: 1 1 100%; }
+    .results-count { margin-left: 0; width: 100%; }
+    .step { padding: 22px 18px 24px; }
+    .modal-card { border-radius: 16px; }
+    .hero-stats { gap: 10px 22px; }
+    .header-actions .btn-ghost { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner">
+  <strong>Demo prototype.</strong> Fictional UI for design purposes — not affiliated with Jumia. No real payments are processed.
+</div>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#" class="logo">
+      Jumia<span class="mark">.</span>
+      <span class="badge">Careers</span>
+    </a>
+
+    <nav class="nav">
+      <a href="#jobs">Open roles</a>
+      <a href="#">Life at Jumia</a>
+      <a href="#">Teams</a>
+      <a href="#">FAQ</a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="#" class="btn btn-ghost">Sign in</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#jobs">Open roles</a>
+    <a href="#">Life at Jumia</a>
+    <a href="#">Teams</a>
+    <a href="#">FAQ</a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow"><span class="pulse"></span> 42 roles open right now</div>
+    <h1>Build what's <em>next</em> for Africa</h1>
+    <p class="sub">
+      Join a team shaping commerce across the continent. Find your role, submit your
+      application, and get moving — all in one place.
+    </p>
+
+    <div class="search-wrap">
+      <span class="icon">🔍</span>
+      <input type="search" id="searchInput" placeholder="Search roles, teams, or skills…" aria-label="Search jobs">
+      <button class="btn btn-primary" id="searchBtn">Search</button>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat"><strong>11</strong><span>Countries</span></div>
+      <div class="stat"><strong>5,000+</strong><span>Team members</span></div>
+      <div class="stat"><strong>42</strong><span>Open roles</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LISTING ============ -->
+<main class="listing" id="jobs">
+  <div class="container">
+    <div class="listing-head">
+      <h2>Open positions</h2>
+    </div>
+
+    <div class="filters">
+      <div class="select-wrap">
+        <select id="teamFilter" aria-label="Filter by team">
+          <option value="all">All teams</option>
+        </select>
+      </div>
+      <div class="select-wrap">
+        <select id="locationFilter" aria-label="Filter by location">
+          <option value="all">All locations</option>
+        </select>
+      </div>
+      <div class="select-wrap">
+        <select id="sortFilter" aria-label="Sort jobs">
+          <option value="newest">Newest first</option>
+          <option value="fee-low">Fee: low to high</option>
+          <option value="fee-high">Fee: high to low</option>
+          <option value="title">Title: A–Z</option>
+        </select>
+      </div>
+      <div class="results-count" id="resultsCount"></div>
+    </div>
+
+    <div class="job-grid" id="jobGrid"></div>
+  </div>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Jumia<span>.</span></div>
+        <p style="max-width: 240px;">A demo careers page built to showcase UI/UX patterns for job listings and checkout flows.</p>
+      </div>
+      <div>
+        <h4>Careers</h4>
+        <a href="#jobs">Open roles</a>
+        <a href="#">Internships</a>
+        <a href="#">Graduate programme</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="#">About us</a>
+        <a href="#">Our values</a>
+        <a href="#">Newsroom</a>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <a href="#">Application FAQ</a>
+        <a href="#">Contact recruiting</a>
+        <a href="#">Accessibility</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Jumia Careers — demo prototype. Not a real recruitment portal.</span>
+      <span>Privacy · Terms</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ MODAL ============ -->
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="modal-close" data-close aria-label="Close dialog">✕</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+/* =====================================================
+   DATA
+   ===================================================== */
+const JOBS = [
+  { id:'JM-1042', title:'Frontend Engineer',       team:'Technology',  location:'Lagos, Nigeria',  type:'Full-time', salary:'₦700k – ₦1.1m / mo', fee:2000, posted:'2 days ago',  tags:['React','TypeScript','CSS'] },
+  { id:'JM-1043', title:'Logistics Operations Lead', team:'Operations', location:'Nairobi, Kenya',  type:'Full-time', salary:'KSh 250k – 380k / mo', fee:2500, posted:'5 days ago',  tags:['Supply chain','Leadership'] },
+  { id:'JM-1044', title:'Product Designer',        team:'Design',      location:'Lagos, Nigeria',  type:'Full-time', salary:'₦600k – ₦950k / mo', fee:2000, posted:'1 day ago',   tags:['Figma','UX Research','Design systems'] },
+  { id:'JM-1045', title:'Data Analyst',            team:'Analytics',   location:'Accra, Ghana',    type:'Full-time', salary:'GH₵ 12k – 18k / mo', fee:1800, posted:'6 days ago',  tags:['SQL','Python','Looker'] },
+  { id:'JM-1046', title:'Customer Experience Associate', team:'Customer Care', location:'Abidjan, Côte d\'Ivoire', type:'Full-time', salary:'CFA 400k – 650k / mo', fee:1500, posted:'3 days ago', tags:['Zendesk','French','English'] },
+  { id:'JM-1047', title:'Backend Engineer (Payments)', team:'Technology', location:'Remote',       type:'Full-time', salary:'Competitive',        fee:2500, posted:'Today',       tags:['Node.js','PostgreSQL','Payments'] },
+  { id:'JM-1048', title:'Marketing Intern',        team:'Marketing',   location:'Lagos, Nigeria',  type:'Internship', salary:'₦120k / mo stipend', fee:1000, posted:'4 days ago',  tags:['Social media','Content'] },
+  { id:'JM-1049', title:'Category Manager — Fashion', team:'Commercial', location:'Cairo, Egypt',  type:'Full-time', salary:'EGP 30k – 45k / mo', fee:2000, posted:'1 week ago',  tags:['Retail','Negotiation'] }
+];
+
+const money = n => '₦' + n.toLocaleString('en-NG');
+const initials = s => s.split(' ').map(w => w[0]).join('').slice(0,2).toUpperCase();
+
+/* =====================================================
+   STATE
+   ===================================================== */
+const state = {
+  query: '',
+  team: 'all',
+  location: 'all',
+  sort: 'newest',
+  job: null,
+  step: 1,
+  method: 'card',
+  ref: ''
+};
+
+const appliedJobs = new Set(); // in-memory for this session
+
+/* =====================================================
+   FILTER DROPDOWNS
+   ===================================================== */
+function populateFilters() {
+  const teams = [...new Set(JOBS.map(j => j.team))].sort();
+  const locations = [...new Set(JOBS.map(j => j.location))].sort();
+
+  const teamSel = document.getElementById('teamFilter');
+  const locSel = document.getElementById('locationFilter');
+
+  teams.forEach(t => teamSel.insertAdjacentHTML('beforeend', `<option value="${t}">${t}</option>`));
+  locations.forEach(l => locSel.insertAdjacentHTML('beforeend', `<option value="${l}">${l}</option>`));
+}
+
+/* =====================================================
+   RENDER JOB GRID
+   ===================================================== */
+function renderJobs() {
+  const grid = document.getElementById('jobGrid');
+  const q = state.query.trim().toLowerCase();
+
+  let list = JOBS.filter(job => {
+    const haystack = (job.title + ' ' + job.team + ' ' + job.location + ' ' + job.tags.join(' ')).toLowerCase();
+    const matchQuery = !q || haystack.includes(q);
+    const matchTeam = state.team === 'all' || job.team === state.team;
+    const matchLoc  = state.location === 'all' || job.location === state.location;
+    return matchQuery && matchTeam && matchLoc;
+  });
+
+  if (state.sort === 'fee-low')  list = [...list].sort((a,b) => a.fee - b.fee);
+  if (state.sort === 'fee-high') list = [...list].sort((a,b) => b.fee - a.fee);
+  if (state.sort === 'title')    list = [...list].sort((a,b) => a.title.localeCompare(b.title));
+
+  document.getElementById('resultsCount').innerHTML =
+    `<b>${list.length}</b> role${list.length === 1 ? '' : 's'} found`;
+
+  if (!list.length) {
+    grid.innerHTML = `
+      <div class="empty">
+        <div class="big">🔍</div>
+        <h3>No roles match your search</h3>
+        <p>Try a different keyword, team, or location.</p>
+      </div>`;
+    return;
+  }
+
+  grid.innerHTML = list.map((job, i) => {
+    const done = appliedJobs.has(job.id);
+    return `
+    <article class="job-card" style="animation-delay:${Math.min(i * 40, 240)}ms">
+      <div class="job-top">
+        <div class="job-logo">${initials(job.team)}</div>
+        <div>
+          <h3 class="job-title">${job.title}</h3>
+          <p class="job-sub">${job.team} · ${job.type}</p>
+        </div>
+      </div>
+
+      <ul class="job-meta">
+        <li><span class="ic">📍</span>${job.location}</li>
+        <li><span class="ic">🕒</span>Posted ${job.posted}</li>
+        <li><span class="ic">💼</span>${job.salary}</li>
+      </ul>
+
+      <div class="tags">${job.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+
+      <div class="job-footer">
+        <div class="fee">
+          <span>Application fee</span>
+          <strong>${money(job.fee)}</strong>
+        </div>
+        <button class="btn ${done ? 'btn-ghost' : 'btn-primary'}"
+                data-apply="${job.id}" ${done ? 'disabled' : ''}>
+          ${done ? 'Applied ✓' : 'Apply now'}
+        </button>
+      </div>
+    </article>`;
+  }).join('');
+}
+
+/* =====================================================
+   MODAL ENGINE
+   ===================================================== */
+const modal     = document.getElementById('modal');
+const modalBody = document.getElementById('modalBody');
+
+function openModal(job) {
+  state.job = job;
+  state.step = 1;
+  state.method = 'card';
+  modal.classList.add('is-open');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  renderStep();
+  setTimeout(() => modal.querySelector('.modal-close')?.focus(), 60);
+}
+
+function closeModal() {
+  modal.classList.remove('is-open');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+  state.job = null;
+}
+
+function goStep(n) {
+  state.step = n;
+  renderStep();
+  modal.querySelector('.modal-card').scrollTop = 0;
+}
+
+function renderStep() {
+  const job = state.job;
+  if (!job) return;
+
+  switch (state.step) {
+    case 1: modalBody.innerHTML = stepReview(job); break;
+    case 2: modalBody.innerHTML = stepPayment(job); bindPayment(); break;
+    case 3: modalBody.innerHTML = stepProcessing(); runProcessing(); break;
+    case 4: modalBody.innerHTML = stepForm(job); break;
+    case 5: modalBody.innerHTML = stepDone(job); break;
+  }
+  bindCommon();
+}
+
+/* ---------- Step 1: review ---------- */
+function stepReview(job) {
+  return `
+    <div class="step">
+      <p class="step-eyebrow">Step 1 of 3 · Review</p>
+      <h2 id="modalTitle">${job.title}</h2>
+      <p class="step-sub">${job.team} · ${job.location} · ${job.type} · Ref ${job.id}</p>
+
+      <div class="summary">
+        <div class="summary-row"><span>Application processing fee</span><span>${money(job.fee)}</span></div>
+        <div class="summary-row"><span>Service charge</span><span>${money(0)}</span></div>
+        <div class="summary-row total"><span>Total due</span><span>${money(job.fee)}</span></div>
+      </div>
+
+      <div class="notice">
+        <span class="ic">ℹ️</span>
+        <span>This is a <strong>demo flow</strong>. The fee is shown for UI demonstration only — no card is charged and no data leaves your browser.</span>
+      </div>
+
+      <button class="btn btn-primary btn-block" id="toPayment">Continue to payment</button>
+      <p class="micro">Application fee is shown upfront before any form is filled in.</p>
+    </div>`;
+}
+
+/* ---------- Step 2: payment ---------- */
+function stepPayment(job) {
+  return `
+    <div class="step">
+      <p class="step-eyebrow">Step 2 of 3 · Payment</p>
+      <h2 id="modalTitle">Pay ${money(job.fee)} to apply</h2>
+      <p class="step-sub">${job.title} · ${job.id}</p>
+
+      <div class="pay-list" id="payList">
+        <label class="pay-method ${state.method === 'card' ? 'selected' : ''}">
+          <input type="radio" name="pm" value="card" ${state.method === 'card' ? 'checked' : ''}>
+          <span class="pm-body">
+            <span class="pm-name">Debit / Credit card</span>
+            <span class="pm-desc">Visa, Mastercard, Verve</span>
+          </span>
+          <span class="pm-icon">💳</span>
+        </label>
+
+        <label class="pay-method ${state.method === 'momo' ? 'selected' : ''}">
+          <input type="radio" name="pm" value="momo" ${state.method === 'momo' ? 'checked' : ''}>
+          <span class="pm-body">
+            <span class="pm-name">Mobile money</span>
+            <span class="pm-desc">MTN MoMo, Airtel Money, M-Pesa</span>
+          </span>
+          <span class="pm-icon">📱</span>
+        </label>
+
+        <label class="pay-method ${state.method === 'ussd' ? 'selected' : ''}">
+          <input type="radio" name="pm" value="ussd" ${state.method === 'ussd' ? 'checked' : ''}>
+          <span class="pm-body">
+            <span class="pm-name">USSD transfer</span>
+            <span class="pm-desc">Dial a code from your phone</span>
+          </span>
+          <span class="pm-icon">☎️</span>
+        </label>
+      </div>
+
+      <div id="methodFields"></div>
+
+      <button class="btn btn-primary btn-block" id="payBtn">Pay ${money(job.fee)}</button>
+      <div class="btn-row" style="margin-top:10px">
+        <button class="btn btn-ghost btn-block" id="backBtn">Back</button>
+      </div>
+      <p class="micro">🔒 Demo mode — do not enter real card details.</p>
+    </div>`;
+}
+
+function methodFieldsHTML(method) {
+  if (method === 'card') {
+    return `
+      <div class="field" id="f-number">
+        <label for="cardNumber">Card number</label>
+        <input id="cardNumber" inputmode="numeric" placeholder="4242 4242 4242 4242" autocomplete="off">
+        <span class="field-error">Enter a 16-digit card number</span>
+      </div>
+      <div class="field-row">
+        <div class="field" id="f-exp">
+          <label for="cardExp">Expiry</label>
+          <input id="cardExp" inputmode="numeric" placeholder="MM/YY" autocomplete="off">
+          <span class="field-error">MM/YY</span>
+        </div>
+        <div class="field" id="f-cvv">
+          <label for="cardCvv">CVV</label>
+          <input id="cardCvv" inputmode="numeric" placeholder="123" maxlength="4" autocomplete="off">
+          <span class="field-error">3 digits</span>
+        </div>
+      </div>`;
+  }
+  if (method === 'momo') {
+    return `
+      <div class="field" id="f-phone">
+        <label for="momoPhone">Mobile money number</label>
+        <input id="momoPhone" inputmode="tel" placeholder="080 1234 5678" autocomplete="off">
+        <span class="field-error">Enter a valid phone number</span>
+      </div>
+      <div class="notice" style="margin-bottom:18px">
+        <span class="ic">📲</span>
+        <span>You'll get a prompt on your phone to approve the payment.</span>
+      </div>`;
+  }
+  return `
+    <div class="notice" style="margin-bottom:18px">
+      <span class="ic">☎️</span>
+      <span>Dial <strong>*737*000*${state.job.fee}#</strong> and follow the prompts. This demo won't actually dial.</span>
+    </div>`;
+}
+
+function bindPayment() {
+  const payList = document.getElementById('payList');
+  const fields  = document.getElementById('methodFields');
+
+  fields.innerHTML = methodFieldsHTML(state.method);
+
+  payList.addEventListener('change', e => {
+    if (e.target.name !== 'pm') return;
+    state.method = e.target.value;
+    payList.querySelectorAll('.pay-method').forEach(el => el.classList.remove('selected'));
+    e.target.closest('.pay-method').classList.add('selected');
+    fields.innerHTML = methodFieldsHTML(state.method);
+    formatInputs();
+  });
+
+  formatInputs();
+
+  document.getElementById('backBtn').addEventListener('click', () => goStep(1));
+  document.getElementById('payBtn').addEventListener('click', validateAndPay);
+}
+
+function formatInputs() {
+  const num = document.getElementById('cardNumber');
+  if (num) {
+    num.addEventListener('input', e => {
+      const v = e.target.value.replace(/\D/g, '').slice(0, 16);
+      e.target.value = v.replace(/(.{4})/g, '$1 ').trim();
+    });
+  }
+  const exp = document.getElementById('cardExp');
+  if (exp) {
+    exp.addEventListener('input', e => {
+      const v = e.target.value.replace(/\D/g, '').slice(0, 4);
+      e.target.value = v.length > 2 ? v.slice(0,2) + '/' + v.slice(2) : v;
+    });
+  }
+  const cvv = document.getElementById('cardCvv');
+  if (cvv) cvv.addEventListener('input', e => { e.target.value = e.target.value.replace(/\D/g, '').slice(0,4); });
+
+  const phone = document.getElementById('momoPhone');
+  if (phone) phone.addEventListener('input', e => { e.target.value = e.target.value.replace(/[^\d\s+]/g, '').slice(0, 16); });
+}
+
+function setInvalid(id, bad) {
+  const el = document.getElementById(id);
+  if (el) el.classList.toggle('invalid', bad);
+  return bad;
+}
+
+function validateAndPay() {
+  let bad = false;
+
+  if (state.method === 'card') {
+    const num = document.getElementById('cardNumber').value.replace(/\s/g, '');
+    const exp = document.getElementById('cardExp').value;
+    const cvv = document.getElementById('cardCvv').value;
+    bad = setInvalid('f-number', num.length !== 16) || bad;
+    bad = setInvalid('f-exp', !/^\d{2}\/\d{2}$/.test(exp)) || bad;
+    bad = setInvalid('f-cvv', cvv.length < 3) || bad;
+  } else if (state.method === 'momo') {
+    const phone = document.getElementById('momoPhone').value.replace(/\D/g, '');
+    bad = setInvalid('f-phone', phone.length < 9) || bad;
+  }
+
+  if (bad) return;
+  goStep(3);
+}
+
+/* ---------- Step 3: processing ---------- */
+function stepProcessing() {
+  return `
+    <div class="step center-step">
+      <div class="spinner"></div>
+      <h2 id="modalTitle" style="padding:0">Processing payment…</h2>
+      <p class="step-sub">Please don't close this window.</p>
+    </div>`;
+}
+
+function runProcessing() {
+  setTimeout(() => {
+    state.ref = 'JM-' + Math.random().toString(36).slice(2, 8).toUpperCase();
+    goStep(4);
+  }, 1900);
+}
+
+/* ---------- Step 4: application form ---------- */
+function stepForm(job) {
+  return `
+    <div class="step">
+      <p class="step-eyebrow">Step 3 of 3 · Your details</p>
+      <h2 id="modalTitle">Payment confirmed</h2>
+      <p class="step-sub">Complete your application for <strong>${job.title}</strong>.</p>
+
+      <div class="summary" style="margin-top:18px">
+        <div class="summary-row"><span>Paid</span><span style="color:var(--green);font-weight:700">${money(job.fee)} ✓</span></div>
+        <div class="summary-row"><span>Receipt</span><span>${state.ref}</span></div>
+      </div>
+
+      <form id="applyForm" novalidate>
+        <div class="field" id="f-name">
+          <label for="fullName">Full name</label>
+          <input id="fullName" placeholder="Ada Okafor" autocomplete="name">
+          <span class="field-error">Please enter your name</span>
+        </div>
+        <div class="field" id="f-email">
+          <label for="email">Email address</label>
+          <input id="email" type="email" placeholder="ada@example.com" autocomplete="email">
+          <span class="field-error">Please enter a valid email</span>
+        </div>
+        <div class="field">
+          <label for="cvLink">Portfolio / CV link</label>
+          <input id="cvLink" placeholder="https://…" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="coverNote">Why this role? (optional)</label>
+          <textarea id="coverNote" placeholder="A couple of sentences about you…"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Submit application</button>
+      </form>
+      <p class="micro">Demo only — nothing is transmitted anywhere.</p>
+    </div>`;
+}
+
+/* ---------- Step 5: done ---------- */
+function stepDone(job) {
+  return `
+    <div class="step center-step">
+      <div class="check-circle">✓</div>
+      <h2 id="modalTitle" style="padding:0">Application submitted</h2>
+      <p class="step-sub">Thanks for applying to <strong>${job.title}</strong>. Our recruiting team will review your details and be in touch.</p>
+
+      <div class="ref-box">
+        <span>Application reference</span>
+        <strong>${state.ref}</strong>
+      </div>
+
+      <button class="btn btn-primary btn-block" data-close>Back to jobs</button>
+      <p class="micro">Keep your reference handy — you'll need it for follow-ups.</p>
+    </div>`;
+}
+
+/* ---------- Common bindings per step ---------- */
+function bindCommon() {
+  // close buttons rendered inside steps
+  modalBody.querySelectorAll('[data-close]').forEach(btn => {
+    btn.addEventListener('click', closeModal);
+  });
+
+  const toPayment = document.getElementById('toPayment');
+  if (toPayment) toPayment.addEventListener('click', () => goStep(2));
+
+  const form = document.getElementById('applyForm');
+  if (form) {
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const name  = document.getElementById('fullName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      let bad = false;
+      bad = setInvalid('f-name', name.length < 2) || bad;
+      bad = setInvalid('f-email', !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) || bad;
+      if (bad) return;
+
+      appliedJobs.add(state.job.id);
+      renderJobs();
+      goStep(5);
+    });
+  }
+}
+
+/* =====================================================
+   EVENT WIRING
+   ===================================================== */
+document.getElementById('jobGrid').addEventListener('click', e => {
+  const btn = e.target.closest('[data-apply]');
+  if (!btn || btn.disabled) return;
+  const job = JOBS.find(j => j.id === btn.dataset.apply);
+  if (job) openModal(job);
+});
+
+modal.addEventListener('click', e => {
+  if (e.target.hasAttribute('data-close')) closeModal();
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+});
+
+document.getElementById('searchInput').addEventListener('input', e => {
+  state.query = e.target.value;
+  renderJobs();
+});
+
+document.getElementById('searchBtn').addEventListener('click', () => {
+  state.query = document.getElementById('searchInput').value;
+  renderJobs();
+  document.getElementById('jobs').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+document.getElementById('teamFilter').addEventListener('change', e => {
+  state.team = e.target.value;
+  renderJobs();
+});
+
+document.getElementById('locationFilter').addEventListener('change', e => {
+  state.location = e.target.value;
+  renderJobs();
+});
+
+document.getElementById('sortFilter').addEventListener('change', e => {
+  state.sort = e.target.value;
+  renderJobs();
+});
+
+const menuToggle = document.getElementById('menuToggle');
+const mobileNav  = document.getElementById('mobileNav');
+menuToggle.addEventListener('click', () => {
+  const open = mobileNav.classList.toggle('is-open');
+  menuToggle.setAttribute('aria-expanded', String(open));
+});
+
+/* =====================================================
+   INIT
+   ===================================================== */
+populateFilters();
+renderJobs();
+</script>
+</body>
+</html>
